@@ -3,7 +3,7 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently 'bun run dev' 'bun run tailwindcss'",
+    "start": "concurrently -k 'bun run dev' 'bun run tailwindcss'",
     "dev": "bun run --watch src/index.tsx",
     "tailwindcss": "bunx tailwindcss -i ./src/input.css -o ./tailwindcss/output.css --watch"
   },
