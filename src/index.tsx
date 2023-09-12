@@ -24,9 +24,9 @@ app.get('/container', ({ headers }) => {
     return (
         <Wrapper>
             <div id="container" class="flex gap-3">
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-21 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" hx-trigger="click consume" />
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" hx-trigger="click consume" />
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" hx-trigger="click consume" />
+                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-21 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" />
+                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" />
+                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
             </div>
         </Wrapper>
     );
@@ -47,7 +47,7 @@ app.get('/page/:id', ({ params: { id }, headers, set }) => {
     const Wrapper = isHTMXRequest(headers) ? Fragment : BaseBody;
     return (
         <Wrapper>
-            <div hx-push-url="true" class={`h-40 w-40 ${bgColors[+id]}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-swap="outerHTML" hx-trigger="click consume" />
+            <div hx-push-url="true" class={`h-40 w-40 ${bgColors[+id]}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-swap="outerHTML" />
         </Wrapper>
     );
 },
@@ -87,7 +87,7 @@ ${children}
 
 const BaseBody = ({ children }: PropsWithChildren) => (
     <BaseHtml>
-        <body class="flex w-full h-screen justify-center items-center" hx-get="/container" hx-swap="innerHTML">
+        <body class="flex w-full h-screen justify-center items-center">
             { children }
         </body>
     </BaseHtml>
