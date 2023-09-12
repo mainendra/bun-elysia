@@ -18,25 +18,37 @@ app.get('/', () => (
     </BaseHtml>
 ));
 
-app.get('/container', () => (
-    <div id="container" class="flex gap-3">
-        <div class="h-20 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" />
-        <div class="h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" />
-        <div class="h-20 w-20 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
-    </div>
-));
+app.get('/container', ({ headers }) => {
+    const Wrapper = isHTMXRequest(headers) ? Fragment : BaseBody;
+    return (
+        <Wrapper>
+            <div id="container" class="flex gap-3">
+                <div class="h-20 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" />
+                <div class="h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" />
+                <div class="h-20 w-20 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
+            </div>
+        </Wrapper>
+    );
+});
 
-app.get('/page/:id', ({ params: { id } }) => {
-    switch (+id) {
-        case 1:
-            return <div class="h-40 w-40 bg-red-600" style={"view-transition-name: box1"} hx-get="/container" hx-swap="outerHTML" />;
-        case 2:
-            return <div class="h-40 w-40 bg-blue-600" style={"view-transition-name: box2"} hx-get="/container" hx-swap="outerHTML" />;
-        case 3:
-            return <div class="h-40 w-40 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/container" hx-swap="outerHTML" />;
-        default:
-            return <div class="h-40 w-40 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/container" hx-swap="outerHTML" />;
+const bgColors: Record<number, string> = {
+    1: 'bg-red-600',
+    2: 'bg-blue-600',
+    3: 'bg-yellow-600',
+};
+
+app.get('/page/:id', ({ params: { id }, headers, set }) => {
+    if (!bgColors[+id]) {
+        set.redirect = '/';
+        return;
     }
+
+    const Wrapper = isHTMXRequest(headers) ? Fragment : BaseBody;
+    return (
+        <Wrapper>
+            <div class={`h-40 w-40 ${bgColors[+id]}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-swap="outerHTML" />
+        </Wrapper>
+    );
 },
     {
         params: t.Object({
@@ -45,12 +57,15 @@ app.get('/page/:id', ({ params: { id } }) => {
     }
 );
 
+app.onError(({ set }) => set.redirect = '/');
+
 app.listen(3000);
 
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+    `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
 
+const isHTMXRequest = (headers: Record<string, string | null>) => headers['hx-request'] === 'true';
 
 const BaseHtml = ({ children }: PropsWithChildren) => `
 <!DOCTYPE html>
@@ -68,3 +83,13 @@ const BaseHtml = ({ children }: PropsWithChildren) => `
 
 ${children}
 `;
+
+const BaseBody = ({ children }: PropsWithChildren) => (
+    <BaseHtml>
+        <body class="flex w-full h-screen justify-center items-center">
+            { children }
+        </body>
+    </BaseHtml>
+);
+
+const Fragment = ({ children }: PropsWithChildren) => <>{ children }</>;
