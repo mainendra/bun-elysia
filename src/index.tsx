@@ -35,6 +35,7 @@ app.get('/container', ({ headers }) => {
 type colorType = {
     bgColor: string;
     textColor: string;
+    selectionColor: string;
     name: string;
 };
 
@@ -42,16 +43,19 @@ const colors: Record<number, colorType> = {
     1: {
         bgColor: 'bg-red-600',
         textColor: 'first-letter:text-red-600',
+        selectionColor: 'selection:bg-red-600 selection:text-white',
         name: 'Red',
     },
     2: {
         bgColor: 'bg-blue-600',
         textColor: 'first-letter:text-blue-600',
+        selectionColor: 'selection:bg-blue-600 selection:text-white',
         name: 'Blue',
     },
     3: {
         bgColor: 'bg-yellow-600',
         textColor: 'first-letter:text-yellow-600',
+        selectionColor: 'selection:bg-yellow-600 selection:text-white',
         name: 'Yellow',
     },
 };
@@ -68,7 +72,7 @@ app.get('/page/:id', ({ params: { id }, headers, set }) => {
             <div id="page-container" class="w-80">
                 <div hx-push-url="true" class={`h-40 w-40 ${colors[+id].bgColor}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-target="#page-container" />
                 <h1 class={`text-4xl font-bold ${colors[+id].textColor} first-letter:text-6xl`}>{`${colors[+id].name} color`}</h1>
-                <p>Dolor dolorem sunt quisquam illum facere. Quidem odit voluptatum pariatur cum sapiente! Soluta non dicta error beatae repellendus vel maxime Corrupti nemo eveniet ipsa consequuntur id. Nobis consectetur dolor inventore.</p>
+                <p class={`${colors[+id].selectionColor}`}>Dolor dolorem sunt quisquam illum facere. Quidem odit voluptatum pariatur cum sapiente! Soluta non dicta error beatae repellendus vel maxime Corrupti nemo eveniet ipsa consequuntur id. Nobis consectetur dolor inventore.</p>
             </div>
         </Wrapper>
     );
