@@ -592,6 +592,10 @@ video {
   width: 10rem;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -632,10 +636,39 @@ video {
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.first-letter\:text-6xl::first-letter {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.first-letter\:text-blue-600::first-letter {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.first-letter\:text-red-600::first-letter {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.first-letter\:text-yellow-600::first-letter {
+  --tw-text-opacity: 1;
+  color: rgb(202 138 4 / var(--tw-text-opacity));
 }

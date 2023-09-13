@@ -32,14 +32,32 @@ app.get('/container', ({ headers }) => {
     );
 });
 
-const bgColors: Record<number, string> = {
-    1: 'bg-red-600',
-    2: 'bg-blue-600',
-    3: 'bg-yellow-600',
+type colorType = {
+    bgColor: string;
+    textColor: string;
+    name: string;
+};
+
+const colors: Record<number, colorType> = {
+    1: {
+        bgColor: 'bg-red-600',
+        textColor: 'first-letter:text-red-600',
+        name: 'Red',
+    },
+    2: {
+        bgColor: 'bg-blue-600',
+        textColor: 'first-letter:text-blue-600',
+        name: 'Blue',
+    },
+    3: {
+        bgColor: 'bg-yellow-600',
+        textColor: 'first-letter:text-yellow-600',
+        name: 'Yellow',
+    },
 };
 
 app.get('/page/:id', ({ params: { id }, headers, set }) => {
-    if (!bgColors[+id]) {
+    if (!colors[+id]) {
         set.redirect = '/';
         return;
     }
@@ -47,7 +65,11 @@ app.get('/page/:id', ({ params: { id }, headers, set }) => {
     const Wrapper = isHTMXRequest(headers) ? Fragment : BaseBody;
     return (
         <Wrapper>
-            <div hx-push-url="true" class={`h-40 w-40 ${bgColors[+id]}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-swap="outerHTML" />
+            <div id="page-container" class="w-80">
+                <div hx-push-url="true" class={`h-40 w-40 ${colors[+id].bgColor}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-target="#page-container" />
+                <h1 class={`text-4xl font-bold ${colors[+id].textColor} first-letter:text-6xl`}>{`${colors[+id].name} color`}</h1>
+                <p>Dolor dolorem sunt quisquam illum facere. Quidem odit voluptatum pariatur cum sapiente! Soluta non dicta error beatae repellendus vel maxime Corrupti nemo eveniet ipsa consequuntur id. Nobis consectetur dolor inventore.</p>
+            </div>
         </Wrapper>
     );
 },
