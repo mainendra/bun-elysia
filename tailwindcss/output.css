@@ -631,9 +631,9 @@ video {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
-.bg-yellow-600 {
+.bg-yellow-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
 .text-4xl {
@@ -668,9 +668,9 @@ video {
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
-.first-letter\:text-yellow-600::first-letter {
+.first-letter\:text-yellow-400::first-letter {
   --tw-text-opacity: 1;
-  color: rgb(202 138 4 / var(--tw-text-opacity));
+  color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
 .selection\:bg-blue-600 *::-moz-selection {
@@ -693,14 +693,14 @@ video {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
-.selection\:bg-yellow-600 *::-moz-selection {
+.selection\:bg-yellow-400 *::-moz-selection {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
-.selection\:bg-yellow-600 *::selection {
+.selection\:bg-yellow-400 *::selection {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
 .selection\:text-white *::-moz-selection {
@@ -733,14 +733,14 @@ video {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
-.selection\:bg-yellow-600::-moz-selection {
+.selection\:bg-yellow-400::-moz-selection {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
-.selection\:bg-yellow-600::selection {
+.selection\:bg-yellow-400::selection {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
 .selection\:text-white::-moz-selection {

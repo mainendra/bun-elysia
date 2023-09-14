@@ -26,7 +26,7 @@ app.get('/container', ({ headers }) => {
             <div id="container" class="flex gap-3">
                 <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-21 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" />
                 <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" />
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-yellow-600" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
+                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-yellow-400" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
             </div>
         </Wrapper>
     );
@@ -53,9 +53,9 @@ const colors: Record<number, colorType> = {
         name: 'Blue',
     },
     3: {
-        bgColor: 'bg-yellow-600',
-        textColor: 'first-letter:text-yellow-600',
-        selectionColor: 'selection:bg-yellow-600 selection:text-white',
+        bgColor: 'bg-yellow-400',
+        textColor: 'first-letter:text-yellow-400',
+        selectionColor: 'selection:bg-yellow-400',
         name: 'Yellow',
     },
 };
