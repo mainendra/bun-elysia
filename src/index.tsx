@@ -24,9 +24,9 @@ app.get('/container', ({ headers }) => {
     return (
         <Wrapper>
             <div id="container" class="flex gap-3">
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-21 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" />
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" />
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class="transition border-black h-20 w-20 bg-yellow-400" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
+                <div _="on mouseenter add .border-4 then add .rounded-lg on mouseout remove .border-4 then remove .rounded-lg on me" hx-push-url="true" class="transition-all border-black h-21 w-20 bg-red-600" style={"view-transition-name: box1"} hx-get="/page/1" hx-target="#container" />
+                <div _="on mouseenter add .border-4 then add .rounded-lg on mouseout remove .border-4 then remove .rounded-lg on me" hx-push-url="true" class="transition-all border-black h-20 w-20 bg-blue-600" style={"view-transition-name: box2"} hx-get="/page/2" hx-target="#container" />
+                <div _="on mouseenter add .border-4 then add .rounded-lg on mouseout remove .border-4 then remove .rounded-lg on me" hx-push-url="true" class="transition-all border-black h-20 w-20 bg-yellow-400" style={"view-transition-name: box3"} hx-get="/page/3" hx-target="#container" />
             </div>
         </Wrapper>
     );
@@ -70,7 +70,7 @@ app.get('/page/:id', ({ params: { id }, headers, set }) => {
     return (
         <Wrapper>
             <div id="page-container" class="w-80">
-                <div _="on mouseenter add .border-4 on mouseout remove .border-4 on me" hx-push-url="true" class={`h-40 w-40 border-black ${colors[+id].bgColor}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-target="#page-container" />
+                <div _="on mouseenter add .border-4 then add .rounded-lg on mouseout remove .border-4 then remove .rounded-lg on me" hx-push-url="true" class={`h-40 w-40 transition-all border-black ${colors[+id].bgColor}`} style={`view-transition-name: box${id}`} hx-get="/container" hx-target="#page-container" />
                 <h1 class={`text-4xl font-bold ${colors[+id].textColor} first-letter:text-6xl`}>{`${colors[+id].name} color`}</h1>
                 <p class={`${colors[+id].selectionColor}`}>Dolor dolorem sunt quisquam illum facere. Quidem odit voluptatum pariatur cum sapiente! Soluta non dicta error beatae repellendus vel maxime Corrupti nemo eveniet ipsa consequuntur id. Nobis consectetur dolor inventore.</p>
             </div>
